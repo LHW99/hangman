@@ -1,26 +1,36 @@
+module HangmanForms
+  def start
+    original_list = File.open("5desk.txt")
+    hidden_word_list = []
 
-module HangmanFormulae
-end
+    original_list.each do |line|
+      line.strip
+        if line.length > 4 && line.length < 13
+        hidden_word_list.push(line)
+        end
+    end
 
-class Squares
+    secret_word = hidden_word_list.sample
+
+    guess_word = secret_word.strip.split("")
+    
+    blank_word = Array.new(guess_word.length, "_".strip)
+
+    puts blank_word
+  end
 end
 
 class Hangman 
-
+include HangmanForms
   def initialize
+    start
+  end
+
+  def guess
+    case gets.strip
+      if 
   end
 
 end
 
-original_list = File.open("5desk.txt")
-hidden_word_list = []
-
-original_list.each do |line|
-  if line.strip.length > 4 && line.strip.length < 13
-    hidden_word_list.push(line)
-  end
-end
-
-secret_word = hidden_word_list.sample
-
-puts secret_word
+Hangman.new
