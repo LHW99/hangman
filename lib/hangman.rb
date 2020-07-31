@@ -10,9 +10,9 @@ module HangmanForms
         end
     end
 
-    @@secret_word = hidden_word_list.sample
+    @@secret_word = hidden_word_list.sample.strip.upcase
 
-    @@guess_word = @@secret_word.strip.split("")
+    @@guess_word = @@secret_word.split("")
     
     @@blank_word = Array.new(@@guess_word.length, "_".strip)
 
@@ -59,7 +59,7 @@ include HangmanForms
   def guess
     i = 1
     puts "Please input a letter"
-    letter_input = gets.strip
+    letter_input = gets.strip.upcase
     case letter_input
     when /[a-zA-Z]/
       if letter_input.length != 1
@@ -86,7 +86,7 @@ include HangmanForms
   end
 
   def gameOver
-    if @@blank_word == @guess_word
+    if @@blank_word.include?("_") == false
       puts "YOU WIN"
       return playAgain
     elsif @@tries == 0
