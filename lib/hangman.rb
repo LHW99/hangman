@@ -57,8 +57,7 @@ include HangmanForms
   end
 
   def guess
-    i = 1
-    puts "Please input a letter"
+    puts "Please input a letter. Type 1 to solve or 2 to save."
     letter_input = gets.strip.upcase
     case letter_input
     when /[a-zA-Z]/
@@ -72,11 +71,32 @@ include HangmanForms
         letter_check(@@letter_guess)
         @@turn += 1
       end
+    when "1"
+      solve
+    when "2"
+      #save
     else 
       puts "please input letter"
     end
     status
     gameOver == true ? gameOver : guess
+  end
+
+  def solve
+    puts "Please type your guess"
+    guess_input = gets.strip.upcase
+    case guess_input
+    when /[a-zA-Z]/
+      if guess_input == @@secret_word
+        puts "YOU WIN"
+        return playAgain
+      elsif guess_input != @@secret_word
+        puts "YOU LOSE"
+        return playAgain
+      end
+    else 
+      "Please input only letters"
+    end
   end
 
   def status
