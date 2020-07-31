@@ -110,5 +110,3 @@ include HangmanForms
   end
 
 end
-
-Hangman.new
