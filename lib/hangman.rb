@@ -1,3 +1,5 @@
+require 'json'
+
 module HangmanForms
   def start
     original_list = File.open("5desk.txt")
@@ -46,6 +48,45 @@ module HangmanForms
     @@guessed_letters.push(lett)
     puts "\n#{@@blank_word.join(" ")}"
   end
+
+  def hangman_values
+    "@@secret_word = #{@@secret_word}
+
+    @@guess_word = #{@@guess_word}
+    
+    @@blank_word = #{@@blank_word}
+
+    @@guessed_letters = #{@@guessed_letters}
+
+    @@turn = #{@@turn}
+
+    @@tries = #{@@tries}"
+  end
+
+  def hangman_save
+    {"#{@@secret_word}" => @@secret_word,
+    "#{@@guess_word}" => @@guess_word,
+    "#{@@blank_word}" => @@blank_word,
+    "#{@@guessed_letters}" => @@guessed_letters,
+    "#{@@turn}" => @@turn,
+    "#{@@tries}" => @@tries}.to_json
+  end
+
+  def self.hangman_load string
+    data = JSON.load string
+    self.newdata["#{@@secret_word}"], data["#{@@guess_word}"], data["#{@@blank_word}"],
+    data["#{@@guessed_letters}"], data["#{@@turn}"], data["#{@@tries}"]
+  end
+
+  def make_save
+    Dir.mkdir("savefile") unless Dir.exists?("savefile")
+
+    filename = "savefile/save.rb"
+
+    File.open(filename, 'w') do |file|
+      file.puts hangman_save
+    end
+  end
 end
 
 class Hangman 
@@ -74,7 +115,9 @@ include HangmanForms
     when "1"
       solve
     when "2"
-      #save
+      make_save
+      puts "State saved"
+      guess
     else 
       puts "please input letter"
     end
@@ -128,5 +171,16 @@ include HangmanForms
       end
     end
   end
+end
 
+class LoadHangman 
+  include HangmanForms
+  include Hangman
+
+  def initialize
+    hangman_load
+    status
+    guess
+  end
+end
 end

@@ -1,0 +1,11 @@
+@@secret_word = UNPEG
+
+    @@guess_word = ["U", "N", "P", "E", "G"]
+    
+    @@blank_word = ["U", "N", "_", "_", "_"]
+
+    @@guessed_letters = ["U", "N"]
+
+    @@turn = 3
+
+    @@tries = 5
