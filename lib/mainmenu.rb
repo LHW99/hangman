@@ -7,7 +7,7 @@ case gets.strip
 when "1"
   Hangman.new
 when "2"
-  LoadHangman.new
+  puts "placeholder"
 when "3"
   exit!
 end

@@ -64,18 +64,18 @@ module HangmanForms
   end
 
   def hangman_save
-    {"#{@@secret_word}" => @@secret_word,
-    "#{@@guess_word}" => @@guess_word,
-    "#{@@blank_word}" => @@blank_word,
-    "#{@@guessed_letters}" => @@guessed_letters,
-    "#{@@turn}" => @@turn,
-    "#{@@tries}" => @@tries}.to_json
+    {:secret_word => "#{@@secret_word}",
+    :guess_word => "#{@@guess_word}",
+    :blank_word => "#{@@blank_word}",
+    :guessed_letters => "#{@@guessed_letters}",
+    :turn => "#{@@turn}",
+    :tries => "#{@@tries}"}.to_json
   end
 
-  def self.hangman_load string
-    data = JSON.load string
-    self.newdata["#{@@secret_word}"], data["#{@@guess_word}"], data["#{@@blank_word}"],
-    data["#{@@guessed_letters}"], data["#{@@turn}"], data["#{@@tries}"]
+  def hangman_load
+    reading = File.read("/home/haiduk/odin_projects/hangman/savefile/save.rb")
+    parsed = JSON.parse(reading)
+    puts parsed
   end
 
   def make_save
@@ -86,12 +86,20 @@ module HangmanForms
     File.open(filename, 'w') do |file|
       file.puts hangman_save
     end
+
+    hangman_load
   end
 end
 
 class Hangman 
 include HangmanForms
-  def initialize
+  def initialize(secret_word, guess_word, blank_word, guessed_letters, turn, tries)
+    @secret_word = secret_word
+    @guess_word = guess_word
+    @blank_word = blank_word
+    @guessed_letters = guessed_letters
+    @turn = turn
+    @tries = tries
     start
     status
     guess
@@ -173,14 +181,10 @@ include HangmanForms
   end
 end
 
-class LoadHangman 
-  include HangmanForms
-  include Hangman
-
-  def initialize
-    hangman_load
-    status
-    guess
+class LoadHangman < Hangman
+include HangmanForms
+  def loadedgame
+    lg = Hangman.new
+    lg.status.guess
   end
-end
 end
