@@ -104,7 +104,7 @@ module HangmanForms
   end
 
   def guess
-    puts "Please input a letter. Type 1 to solve or 2 to save."
+    puts "Please input a letter. Type 1 to solve, 2 to save, and 3 to quit."
     letter_input = gets.strip.upcase
     case letter_input
     when /[a-zA-Z]/
@@ -123,6 +123,8 @@ module HangmanForms
       make_save
       puts "State saved"
       guess
+    when "3"
+      exit!
     else 
       puts "Please input a letter or other option"
     end
