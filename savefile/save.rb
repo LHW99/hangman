@@ -1,1 +1,1 @@
-{"secret_word":"ATHABASKAN","guess_word":"[\"A\", \"T\", \"H\", \"A\", \"B\", \"A\", \"S\", \"K\", \"A\", \"N\"]","blank_word":"[\"A\", \"T\", \"H\", \"A\", \"_\", \"A\", \"_\", \"_\", \"A\", \"_\"]","guessed_letters":"[\"A\", \"T\", \"H\"]","turn":"4","tries":"5"}
+{"secret_word":"OUTSIDER","guess_word":"[\"O\", \"U\", \"T\", \"S\", \"I\", \"D\", \"E\", \"R\"]","blank_word":"[\"O\", \"U\", \"T\", \"_\", \"_\", \"_\", \"_\", \"_\"]","guessed_letters":"[\"O\", \"U\", \"T\"]","turn":"4","tries":"5"}

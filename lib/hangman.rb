@@ -75,7 +75,14 @@ module HangmanForms
   def hangman_load
     reading = File.read("/home/haiduk/odin_projects/hangman/savefile/save.rb")
     parsed = JSON.parse(reading)
-    puts parsed
+    clean_p = parsed
+    @@secret_word = clean_p["secret_word"].gsub("\"", "")
+    @@guess_word = clean_p["guess_word"].gsub("\"", "").chars
+    @@blank_word = clean_p["blank_word"].gsub("\"", "").chars
+    @@guessed_letters = clean_p["guessed_letters"].gsub("\"", "").chars
+    @@turn = clean_p["turn"].to_i
+    @@tries = clean_p["tries"].to_i
+    puts @@blank_word
   end
 
   def make_save
@@ -86,20 +93,12 @@ module HangmanForms
     File.open(filename, 'w') do |file|
       file.puts hangman_save
     end
-
-    hangman_load
   end
 end
 
 class Hangman 
 include HangmanForms
-  def initialize(secret_word, guess_word, blank_word, guessed_letters, turn, tries)
-    @secret_word = secret_word
-    @guess_word = guess_word
-    @blank_word = blank_word
-    @guessed_letters = guessed_letters
-    @turn = turn
-    @tries = tries
+  def initialize
     start
     status
     guess
@@ -123,7 +122,7 @@ include HangmanForms
     when "1"
       solve
     when "2"
-      make_save
+      hangman_load
       puts "State saved"
       guess
     else 
