@@ -77,9 +77,15 @@ module HangmanForms
     parsed = JSON.parse(reading)
     clean_p = parsed
     @@secret_word = clean_p["secret_word"].gsub("\"", "")
-    @@guess_word = clean_p["guess_word"].gsub("\"", "").chars
-    @@blank_word = clean_p["blank_word"].gsub("\"", "").chars
-    @@guessed_letters = clean_p["guessed_letters"].gsub("\"", "").chars
+    @@guess_word = 
+    clean_p["guess_word"].gsub("\"", "").gsub(" ", "")
+    .gsub(",", "").gsub("[", "").gsub("]", "").chars
+    @@blank_word = 
+    clean_p["blank_word"].gsub("\"", "").gsub(" ", "")
+    .gsub(",", "").gsub("[", "").gsub("]", "").chars
+    @@guessed_letters = 
+    clean_p["guessed_letters"].gsub("\"", "").gsub(" ", "")
+    .gsub(",", "").gsub("[", "").gsub("]", "").chars
     @@turn = clean_p["turn"].to_i
     @@tries = clean_p["tries"].to_i
     puts @@blank_word
