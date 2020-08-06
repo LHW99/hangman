@@ -1,1 +1,1 @@
-{"secret_word":"OUTSIDER","guess_word":"[\"O\", \"U\", \"T\", \"S\", \"I\", \"D\", \"E\", \"R\"]","blank_word":"[\"O\", \"U\", \"T\", \"_\", \"_\", \"_\", \"_\", \"_\"]","guessed_letters":"[\"O\", \"U\", \"T\"]","turn":"4","tries":"5"}
+{"secret_word":"MANUMIT","guess_word":"[\"M\", \"A\", \"N\", \"U\", \"M\", \"I\", \"T\"]","blank_word":"[\"M\", \"A\", \"N\", \"_\", \"M\", \"_\", \"_\"]","guessed_letters":"[\"M\", \"A\", \"N\"]","turn":"4","tries":"5"}

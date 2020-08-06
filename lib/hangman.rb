@@ -26,15 +26,12 @@ module HangmanForms
 
     @@tries = 5
 
-    puts @@guess_word
     puts @@blank_word.join(" ")
-
   end
 
   def letter_check(lett)
     j=0
     if @@guess_word.include?(lett)
-      puts "included"
       while j < @@guess_word.length
         if @@guess_word[j] == lett
           @@blank_word[j] = lett
@@ -42,7 +39,6 @@ module HangmanForms
         j+=1
       end
     else 
-      puts "not included"
       @@tries -= 1
     end
     @@guessed_letters.push(lett)
@@ -88,7 +84,7 @@ module HangmanForms
     .gsub(",", "").gsub("[", "").gsub("]", "").chars
     @@turn = clean_p["turn"].to_i
     @@tries = clean_p["tries"].to_i
-    puts @@blank_word
+    puts @@blank_word.join(" ")
   end
 
   def make_save
@@ -100,14 +96,11 @@ module HangmanForms
       file.puts hangman_save
     end
   end
-end
 
-class Hangman 
-include HangmanForms
-  def initialize
-    start
-    status
-    guess
+  def status
+    puts "Guessed Letters: #{@@guessed_letters.sort.join(", ")}"
+    puts "Turn: #{@@turn}"
+    puts "Incorrect Tries Remaining: #{@@tries}"
   end
 
   def guess
@@ -116,11 +109,10 @@ include HangmanForms
     case letter_input
     when /[a-zA-Z]/
       if letter_input.length != 1
-        puts "don't"
+        puts "Please input only 1 letter"
       elsif @@guessed_letters.include?(letter_input)
-        puts "try a different letter"
+        puts "Please select a letter that has not been selected"
       else
-        puts "ok"
         @@letter_guess = letter_input
         letter_check(@@letter_guess)
         @@turn += 1
@@ -128,14 +120,23 @@ include HangmanForms
     when "1"
       solve
     when "2"
-      hangman_load
+      make_save
       puts "State saved"
       guess
     else 
-      puts "please input letter"
+      puts "Please input a letter or other option"
     end
     status
     gameOver == true ? gameOver : guess
+  end
+end
+
+class Hangman 
+include HangmanForms
+  def initialize
+    start
+    status
+    guess
   end
 
   def solve
@@ -155,18 +156,12 @@ include HangmanForms
     end
   end
 
-  def status
-    puts "Guessed Letters: #{@@guessed_letters.sort.join(", ")}"
-    puts "Turn: #{@@turn}"
-    puts "Incorrect Tries Remaining: #{@@tries}"
-  end
-
   def gameOver
     if @@blank_word.include?("_") == false
-      puts "YOU WIN"
+      puts "YOU WIN!"
       return playAgain
     elsif @@tries == 0
-      puts "YOU LOSE"
+      puts "YOU LOSE. THE WORD WAS #{@@secret_word}!"
       return playAgain
     end
   end
@@ -188,8 +183,9 @@ end
 
 class LoadHangman < Hangman
 include HangmanForms
-  def loadedgame
-    lg = Hangman.new
-    lg.status.guess
+  def initialize
+    hangman_load
+    status
+    guess
   end
 end
