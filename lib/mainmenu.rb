@@ -1,4 +1,4 @@
-require '/home/haiduk/odin_projects/hangman/lib/hangman'
+require 'CHANGE/THIS/lib/hangman'
 require 'json'
 
 puts "Welcome to Hangman! Please select from the following:\n1. New Game"
