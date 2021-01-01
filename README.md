@@ -16,7 +16,7 @@ Launch the game from the terminal
 
 You can start a new game or load a saved one.
 
-![ss1](/screenshots/1.png?raw=true)
+![ss1](https://github.com/LHW99/hangman/blob/master/screenshots/1.png)
 
 If you start a new game, you will be presented with the game interface. It will show you how many letters the secret work is, what letters have been, guessed, and how many tries your have left. 
 
