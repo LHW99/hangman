@@ -16,12 +16,12 @@ Launch the game from the terminal
 
 You can start a new game or load a saved one.
 
-![ss1](1.png?raw=true)
+![ss1](/screenshots/1.png?raw=true)
 
 If you start a new game, you will be presented with the game interface. It will show you how many letters the secret work is, what letters have been, guessed, and how many tries your have left. 
 
-![ss2](2.png?raw=true)
+![ss2](/screenshots/2.png?raw=true)
 
 The game ends when you guess the word or fail to do so. You will be prompted to play again if you'd like.
 
-![ss3](3.png?raw=true)
+![ss3](/screenshots/3.png?raw=true)
